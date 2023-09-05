@@ -1,0 +1,38 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.11.4
+
+      - name: Build Docker image
+        run: docker build -t missiondigital1 .
+
+      - name: Run Docker Image
+        run: docker run --rm --tty missiondigital1 | docker inspect missiondigital1
+
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.11.4
+
+      - name: Build Docker Test image
+        run: docker build -t missiondigitaltest -f Dockerfile.test .
+
+      - name: Run Docker Image
+        run: docker run --rm --tty missiondigitaltest

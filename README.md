@@ -5,7 +5,7 @@
   
 This app has been `dockerized`, so all the process occurs inside docker containers.
 
-- Clone this repo [MissionDigital repo](https://github.com/kkoci/missiondigital)
+- Clone this repo 
 
 Once it has been cloned, run:
 
